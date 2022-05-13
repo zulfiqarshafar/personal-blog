@@ -1,0 +1,65 @@
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login__blog-link {
+  margin-top: 5em;
+  margin-bottom: 2em;
+}
+
+.login__blog-link a {
+  color: black;
+  text-decoration: none;
+}
+
+.login__blog-link a:hover {
+  color: lightsalmon;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  padding: 2em;
+  min-width: 400px;
+}
+
+.login__form__alert {
+  margin-bottom: 1.5em;
+}
+
+/* .login__form__alert.visible {
+  display: flex;
+}
+
+.login__form__alert.invisible {
+  display: none;
+} */
+
+.login__form label {
+  font-weight: bold;
+}
+
+.login__form input {
+  margin: 0.75em 0 1.5em 0;
+  padding: 0.5em;
+  font-size: 16px;
+}
+
+.login__form button {
+  margin-top: 1em;
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  background-color: #65ac1d;
+  border: none;
+}
+
+.login__form button:hover {
+  background-color: hsl(90, 71%, 30%);
+  cursor: pointer;
+}

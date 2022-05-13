@@ -1,0 +1,15 @@
+.side-category {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7em;
+  /* border: 1px solid lightgray; */
+  font-size: 0.9em;
+  margin-bottom: 0.7em;
+  background-color: lightgray;
+  text-decoration: none;
+  color: black;
+}
+
+.side-category:hover {
+  background-color: lightsalmon;
+}

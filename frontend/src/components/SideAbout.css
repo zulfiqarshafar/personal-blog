@@ -1,0 +1,9 @@
+.side_about {
+  margin-bottom: 4em;
+}
+
+.side_about__image {
+  border-radius: 50%;
+  width: 100%;
+  max-width: 300px;
+}

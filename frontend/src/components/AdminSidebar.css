@@ -1,0 +1,66 @@
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 12%;
+  height: 100vh;
+  position: fixed;
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
+.admin-sidebar .MuiList-root {
+  padding: 0;
+}
+
+.admin-sidebar a {
+  color: black;
+  text-decoration: none;
+}
+
+.admin-sidebar .MuiListItemButton-root.Mui-selected {
+  background-color: lightsalmon;
+}
+
+.admin-sidebar .MuiListItemButton-root:hover,
+.admin-sidebar .MuiListItemButton-root.Mui-selected:hover {
+  background-color: salmon;
+}
+
+/* .sidebar-header {
+  margin-top: 1em;
+} */
+
+/* .sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 1em;
+}
+
+.sidebar-footer {
+  margin-bottom: 1em;
+} */
+
+/* .sidebar-header,
+.sidebar-menu div,
+.sidebar-footer div {
+  display: flex;
+} */
+
+/* .sidebar-header__collapse-icon,
+.sidebar-menu__articles__icon,
+.sidebar-footer__logout__icon {
+  width: 2em;
+  margin-right: 1em;
+} */
+
+/* .sidebar-menu a,
+.sidebar-footer a {
+  text-decoration: none;
+  color: black;
+} */
+
+/* .sidebar-menu a:hover,
+.sidebar-footer a:hover {
+  color: lightsalmon;
+} */

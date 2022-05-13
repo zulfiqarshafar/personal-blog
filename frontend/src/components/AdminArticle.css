@@ -1,0 +1,58 @@
+.admin-article {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  padding: 1.5em;
+  margin-bottom: 2em;
+}
+
+.admin-article__information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-article__information__date__created {
+  margin-bottom: 0.3em;
+}
+
+.admin-article__information__action {
+  display: flex;
+  align-items: center;
+}
+
+.admin-article__information__action button {
+  display: flex;
+  padding: 0.75em;
+  margin-left: 1em;
+  border: none;
+  font-size: 16px;
+}
+
+.admin-article__information__action__edit {
+  background-color: rgb(117, 117, 255);
+}
+
+.admin-article__information__action__edit:hover {
+  background-color: rgb(71, 71, 171);
+  cursor: pointer;
+}
+
+.admin-article__information__action__delete {
+  background-color: rgb(255, 49, 49);
+}
+
+.admin-article__information__action__delete:hover {
+  background-color: rgb(177, 25, 25);
+  cursor: pointer;
+}
+
+.admin-article__information__action__edit__icon,
+.admin-article__information__action__delete__icon {
+  display: flex;
+  margin-right: 0.5em;
+}
+
+.admin-article__short-description p {
+  margin: 0;
+  text-align: justify;
+}

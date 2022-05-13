@@ -1,0 +1,71 @@
+.create-article {
+  display: flex;
+}
+
+.create-article__content {
+  padding: 3em 4em;
+  margin-left: 12%;
+  width: 100%;
+}
+
+.create-article__content__back__button {
+  padding: 0.75em;
+  margin-bottom: 2em;
+  background-color: lightgray;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.create-article__content__back__button:hover {
+  background-color: gray;
+}
+
+.create-article__content__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.create-article__content__header__date__created {
+  margin-bottom: 0.3em;
+}
+
+.create-article__content__header__action {
+  display: flex;
+  align-items: center;
+}
+
+.create-article__content__header__action button {
+  padding: 0.75em;
+  margin-left: 1em;
+  border: none;
+  font-size: 14px;
+}
+
+.create-article__content__header__action__save-draft {
+  background-color: rgb(117, 117, 255);
+}
+
+.create-article__content__header__action__save-draft:hover {
+  background-color: rgb(71, 71, 171);
+  cursor: pointer;
+}
+
+.create-article__content__header__action__publish {
+  background-color: #49e14f;
+}
+
+.create-article__content__header__action__publish:hover {
+  background-color: #32a936;
+  cursor: pointer;
+}
+
+.create-article__content__header__action__delete {
+  background-color: rgb(255, 49, 49);
+}
+
+.create-article__content__header__action__delete:hover {
+  background-color: rgb(177, 25, 25);
+  cursor: pointer;
+}
