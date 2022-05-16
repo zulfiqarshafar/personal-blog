@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./AdminSidebar.css";
 import {
   List,
@@ -12,9 +12,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArticleIcon from "@mui/icons-material/Article";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
+import useAuth from "../utils/context/AuthProvider";
 
 function AdminSidebar() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuth();
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -33,11 +37,30 @@ function AdminSidebar() {
         // console.log(data);
         localStorage.removeItem("accesstoken");
         // console.log("Logged out");
+        navigate("/admin/login");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/admin/articles":
+      case "/admin/articles/create":
+        setSelectedIndex(1);
+        break;
+      case "/admin/categories":
+        setSelectedIndex(2);
+        break;
+      default:
+      // do nothing
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <div className="admin-sidebar">
@@ -77,14 +100,14 @@ function AdminSidebar() {
           </ListItemButton>
         </Link>
         <Divider />
-        <Link to="/admin/login">
-          <ListItemButton onClick={handleLogout}>
+        <div onClick={handleLogout}>
+          <ListItemButton>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
             <ListItemText primary="Log out" />
           </ListItemButton>
-        </Link>
+        </div>
       </List>
       {/* <div className="sidebar-header">
         <div className="sidebar-header__collapse-icon">--</div>

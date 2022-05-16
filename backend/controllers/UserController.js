@@ -128,7 +128,9 @@ userController.post_refresh_token = async (req, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
-  return res.status(201).send({ accessToken: accessToken });
+  return res
+    .status(201)
+    .send({ username: user.username, accessToken: accessToken });
 };
 
 // Generate access token

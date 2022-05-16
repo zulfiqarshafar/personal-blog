@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminArticle from "../../components/AdminArticle";
-import AdminSidebar from "../../components/AdminSidebar";
 import "./Articles.css";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -23,7 +22,6 @@ function Articles() {
 
   return (
     <div className="articles">
-      <AdminSidebar />
       <div className="articles__content">
         <div className="articles__content__header">
           <Link to="/admin/articles/create">

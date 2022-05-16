@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AdminSidebar from "../../../components/AdminSidebar";
 import ArticleEditor from "../../../components/ArticleEditor";
 import "./Create.css";
 
 function Create() {
   return (
     <div className="create-article">
-      <AdminSidebar />
       <div className="create-article__content">
         <div className="create-article__content__back">
           <Link to="/admin/articles">

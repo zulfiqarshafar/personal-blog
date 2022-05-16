@@ -7,7 +7,7 @@ import "./Login.css";
 function Login() {
   const accessToken = localStorage.getItem("accesstoken");
 
-  const { setAuth } = useAuth();
+  const { setUser } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,9 +44,9 @@ function Login() {
         return Promise.reject(response);
       })
       .then((data) => {
-        // console.log(data);
         const accessToken = data?.accessToken;
-        setAuth({ username, accessToken });
+        // setAuth({ username, accessToken });
+        setUser(data.username);
         localStorage.setItem("accesstoken", accessToken);
         setUsername("");
         setPassword("");

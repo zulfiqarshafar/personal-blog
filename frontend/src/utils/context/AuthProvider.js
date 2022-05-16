@@ -3,9 +3,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({});
+  // const [auth, setAuth] = useState({});
+  const [user, setUser] = useState("");
 
   useEffect(() => {
+    localStorage.removeItem("accesstoken");
+
     // console.log("running");
     async function getAccessToken() {
       await fetch("http://localhost:8080/api/users/refresh-token", {
@@ -21,17 +24,20 @@ export const AuthProvider = ({ children }) => {
         })
         .then((data) => {
           // console.log(data);
-          setAuth({ accessToken: data.accessToken });
+          setUser({ username: data.username });
+          // console.log(user);
           localStorage.setItem("accesstoken", data.accessToken);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     getAccessToken();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
