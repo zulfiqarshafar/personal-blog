@@ -30,6 +30,7 @@
 
 .admin-article__information__action__edit {
   background-color: rgb(117, 117, 255);
+  border-radius: 5px;
 }
 
 .admin-article__information__action__edit:hover {
@@ -39,6 +40,7 @@
 
 .admin-article__information__action__delete {
   background-color: rgb(255, 49, 49);
+  border-radius: 5px;
 }
 
 .admin-article__information__action__delete:hover {
@@ -50,6 +52,10 @@
 .admin-article__information__action__delete__icon {
   display: flex;
   margin-right: 0.5em;
+}
+
+.admin-article__categories {
+  margin-bottom: 1em;
 }
 
 .admin-article__short-description p {
