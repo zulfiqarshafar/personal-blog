@@ -14,6 +14,10 @@
   margin-top: 0.25em;
 }
 
+.main-article__categories {
+  min-height: 2em;
+}
+
 .main-article__content {
   text-align: justify;
 }

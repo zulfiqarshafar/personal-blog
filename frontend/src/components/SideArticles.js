@@ -1,14 +1,10 @@
 import React from "react";
-import dayjs from "dayjs";
+import { formatDate } from "../utils/helper/Helper";
 import SideArticle from "./SideArticle";
 import "./SideArticles.css";
 
 function SideArticles(props) {
   const sideArticles = props.sideArticles;
-
-  const formatDate = (date) => {
-    return dayjs(date).format("DD MMMM YYYY");
-  };
 
   return (
     <div className="side-articles">

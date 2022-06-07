@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import dayjs from "dayjs";
+import { formatDate } from "../../utils/helper/Helper";
 import Header from "../../components/Header";
+import SanitizedComponent from "../../components/SanitizedComponent";
+import { Chip } from "@mui/material";
 import "./Article.css";
 
 function Article() {
@@ -12,13 +14,11 @@ function Article() {
   const [previousArticle, setPreviousArticle] = useState(null);
   const [nextArticle, setNextArticle] = useState(null);
 
-  const formatDate = (date) => {
-    return dayjs(date).format("DD MMMM YYYY");
-  };
-
   useEffect(() => {
     async function getArticles() {
-      await fetch("http://localhost:8080/api/articles?id=" + articleId)
+      await fetch(
+        "http://localhost:8080/api/articles/published?id=" + articleId
+      )
         .then((response) => response.json())
         .then((data) => {
           // console.log(data);
@@ -43,9 +43,21 @@ function Article() {
           <div className="main-article__title">
             <h1>{article.title}</h1>
           </div>
-          <div className="main-article__content">
-            <p>{article.body}</p>
+          <div className="main-article__categories">
+            {article.categories &&
+              article.categories.map((category, index) => (
+                <Chip
+                  size="small"
+                  key={index}
+                  label={category.name}
+                  sx={{ marginLeft: 0.5, marginRight: 0.5, marginBottom: 1 }}
+                />
+              ))}
           </div>
+          <SanitizedComponent
+            className="main-article__content"
+            text={article.content}
+          />
         </div>
         <div className="sibling-article">
           <div className="sibling-article__previous-article">

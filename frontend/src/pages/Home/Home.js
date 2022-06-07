@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import "./Home.css";
+import { formatDate } from "../../utils/helper/Helper";
 import Header from "../../components/Header";
 import HomeArticle from "../../components/HomeArticle";
 import SideAbout from "../../components/SideAbout";
 import SideArticles from "../../components/SideArticles";
 import TopCategories from "../../components/TopCategories";
+import "./Home.css";
 
 function Home() {
   const [articles, setArticles] = useState([]);
   const [sideArticles, setSideArticles] = useState([]);
   const [topCategories, setTopCategories] = useState([]);
 
-  const formatDate = (date) => {
-    return dayjs(date).format("DD MMMM YYYY");
+  const generateShortContent = (content) => {
+    const container = document.createElement("div");
+    container.innerHTML = content;
+
+    const imgList = container.querySelectorAll("img");
+    if (imgList.length > 0) {
+      imgList.forEach((img) => {
+        img.parentNode.removeChild(img);
+      });
+    }
+
+    const newContent = container.innerHTML;
+
+    return newContent.length > 500
+      ? newContent.substring(0, 500) + "..."
+      : newContent;
   };
 
   const getArticles = async () => {
-    await fetch("http://localhost:8080/api/articles")
+    await fetch("http://localhost:8080/api/articles/published")
       .then((response) => response.json())
       .then((data) => {
         setArticles(data);
@@ -90,7 +104,8 @@ function Home() {
                 articleId={article._id}
                 createdAt={formatDate(article.createdAt)}
                 title={article.title}
-                body={article.body}
+                categories={article.categories}
+                content={generateShortContent(article.content)}
               />
             ))}
           </div>

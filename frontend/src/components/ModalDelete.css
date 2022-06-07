@@ -1,0 +1,9 @@
+.modal-delete__description {
+  margin-bottom: 2em;
+}
+
+.modal-delete__action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+}

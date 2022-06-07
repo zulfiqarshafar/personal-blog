@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import { port } from "./config/config.js";
 import articleRouter from "./routes/ArticleRouter.js";
+import categoryRouter from "./routes/CategoryRouter.js";
 import userRouter from "./routes/UserRouter.js";
 
 // app config
@@ -23,6 +24,7 @@ mongoose.connection.once("open", () => {
 });
 
 app.use("/api/articles", articleRouter);
+app.use("/api/categories", categoryRouter);
 app.use("/api/users", userRouter);
 
 // listen
