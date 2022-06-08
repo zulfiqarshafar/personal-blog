@@ -357,6 +357,7 @@ function Create() {
             value={categoryVal}
             onChange={(event, value) => {
               setCategoryVal(value);
+              setDirty(true);
             }}
             multiple
             freeSolo
