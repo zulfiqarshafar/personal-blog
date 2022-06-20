@@ -1,13 +1,12 @@
-import { Alert, Grow } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../utils/context/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
+import { Alert, Grow } from "@mui/material";
 import "./Login.css";
 
 function Login() {
-  const accessToken = localStorage.getItem("accesstoken");
-
-  const { setUser } = useAuth();
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,15 +44,14 @@ function Login() {
       })
       .then((data) => {
         const accessToken = data?.accessToken;
-        // setAuth({ username, accessToken });
-        setUser(data.username);
         localStorage.setItem("accesstoken", accessToken);
+        dispatch(setUser(data.username));
+        setUser(data.username);
         setUsername("");
         setPassword("");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        // console.log(error);
         setAlertOpen(true);
         if (error.status === 400) {
           setErrMessage("Unauthorized!");
@@ -65,7 +63,7 @@ function Login() {
       });
   };
 
-  return !accessToken ? (
+  return (
     <section className="login">
       <h1 className="login__blog-link">
         <a href="/">BLOG</a>
@@ -110,8 +108,6 @@ function Login() {
         <button type="submit">Log In</button>
       </form>
     </section>
-  ) : (
-    <Navigate to="/admin/articles" />
   );
 }
 

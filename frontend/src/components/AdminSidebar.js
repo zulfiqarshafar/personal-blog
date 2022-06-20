@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./AdminSidebar.css";
 import {
   List,
@@ -12,12 +13,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArticleIcon from "@mui/icons-material/Article";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
-import useAuth from "../utils/context/AuthProvider";
 
 function AdminSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAuth();
+  const user = useSelector((state) => state.user.value)
+
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handleListItemClick = (event, index) => {

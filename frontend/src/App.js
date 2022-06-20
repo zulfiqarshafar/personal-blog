@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Create from "./pages/Articles/Create/Create";
 import About from "./pages/About/About";
 import Categories from "./pages/Categories/Categories";
+import LoginLayout from "./components/LoginLayout";
 import PrivateLayout from "./components/PrivateLayout";
 import { AuthProvider } from "./utils/context/AuthProvider";
 
@@ -24,7 +25,10 @@ function App() {
               <Route exact path="/admin/categories" element={<Categories />} />
             </Route>
 
-            <Route path="/admin/login" element={<Login />} />
+            <Route element={<LoginLayout />}>
+              <Route path="/admin/login" element={<Login />} />
+            </Route>
+
             <Route path="/article" element={<Article />} />
             <Route path="/about" element={<About />} />
             <Route exact path="/" element={<Home />} />

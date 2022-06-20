@@ -320,7 +320,7 @@ function Create() {
             visibility: dirty ? "visible" : "hidden",
           }}
         >
-          You have unsaved content!
+          You have an unsaved content!
         </Alert>
 
         <div className="create-article__content__title">

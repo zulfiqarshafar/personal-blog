@@ -1,15 +1,13 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  // const [auth, setAuth] = useState({});
-  const [user, setUser] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    localStorage.removeItem("accesstoken");
-
-    // console.log("running");
     async function getAccessToken() {
       await fetch("http://localhost:8080/api/users/refresh-token", {
         method: "POST",
@@ -19,13 +17,12 @@ export const AuthProvider = ({ children }) => {
         },
       })
         .then((response) => {
+          localStorage.removeItem("accesstoken");
           if (response.ok) return response.json();
           return Promise.reject(response);
         })
         .then((data) => {
-          // console.log(data);
-          setUser({ username: data.username });
-          // console.log(user);
+          dispatch(setUser(data.username));
           localStorage.setItem("accesstoken", data.accessToken);
         })
         .catch((error) => {
@@ -36,11 +33,7 @@ export const AuthProvider = ({ children }) => {
     getAccessToken();
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
 };
 
 const useAuth = () => {
