@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { port } from "./config/config.js";
 import articleRouter from "./routes/ArticleRouter.js";
 import categoryRouter from "./routes/CategoryRouter.js";
+import imageRouter from "./routes/ImageRouter.js";
 import userRouter from "./routes/UserRouter.js";
 
 // app config
@@ -19,12 +20,13 @@ app.use(
   })
 );
 
-mongoose.connection.once("open", () => {
-  console.log("DB Connected");
-});
+// mongoose.connection.once("open", () => {
+//   console.log("DB Connected");
+// });
 
 app.use("/api/articles", articleRouter);
 app.use("/api/categories", categoryRouter);
+app.use("/api/images", imageRouter);
 app.use("/api/users", userRouter);
 
 // listen

@@ -15,21 +15,29 @@ function Article() {
   const [nextArticle, setNextArticle] = useState(null);
 
   useEffect(() => {
-    async function getArticles() {
+    async function getCurrentArticle() {
+      await fetch("http://localhost:8080/api/articles/published/" + articleId)
+        .then((response) => response.json())
+        .then((data) => {
+          setArticle(data);
+        })
+        .catch((error) => console.log(error));
+    }
+
+    async function getSibilngArticle() {
       await fetch(
-        "http://localhost:8080/api/articles/published?id=" + articleId
+        "http://localhost:8080/api/articles/published/sibling/" + articleId
       )
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
-          setArticle(data.currentArticle);
           setPreviousArticle(data.previousArticle);
           setNextArticle(data.nextArticle);
         })
         .catch((error) => console.log(error));
     }
 
-    getArticles();
+    getCurrentArticle();
+    getSibilngArticle();
   }, [articleId]);
 
   return (

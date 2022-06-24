@@ -152,7 +152,7 @@ function Create() {
       const formData = new FormData();
       formData.append("image", blobInfo.blob(), blobInfo.filename());
 
-      fetch("http://localhost:8080/api/articles/images", {
+      fetch("http://localhost:8080/api/images", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + accesstoken,
@@ -482,7 +482,7 @@ function Create() {
 
                 input.click();
               },
-              // images_upload_url: 'http:/localhost:8080/api/articles/images',
+              // images_upload_url: 'http:/localhost:8080/api/images',
               images_upload_handler: handleImageUpload,
             }}
           />

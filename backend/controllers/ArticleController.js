@@ -18,8 +18,6 @@ articleController.get_articles = async (req, res) => {
 // @desc    Display one of article.
 // @route   GET /articles/:id
 articleController.get_article = async (req, res) => {
-  // console.log(req.params.id);
-
   Articles.findOne({ _id: req.params.id, isDeleted: false })
     .populate("categories", "name -_id")
     .exec((err, data) => {
@@ -28,58 +26,63 @@ articleController.get_article = async (req, res) => {
     });
 };
 
-// @desc    Display list of all published articles or display one published article.
+// @desc    Display list of all published articles.
 // @route   GET /articles/published
 articleController.get_published_articles = async (req, res) => {
-  if (req.query.id) {
-    let articles = {};
+  Articles.find({ isPublished: true, isDeleted: false })
+    .populate("categories", "name -_id")
+    .sort({ createdAt: -1 })
+    .exec((err, data) => {
+      if (err) res.status(500).json(err);
+      return res.status(200).json(data);
+    });
+};
 
-    // Current article
-    try {
-      articles.currentArticle = await Articles.findOneAndUpdate(
-        { _id: req.query.id, isPublished: true, isDeleted: false },
-        {
-          $inc: { viewCount: 1 },
-        },
-        { new: true }
-      ).populate("categories", "name -_id");
-    } catch (err) {
-      return res.status(500).json(err);
-    }
+// @desc    Display one published article.
+// @route   GET /articles/published/:id
+articleController.get_published_article = async (req, res) => {
+  Articles.findOneAndUpdate(
+    { _id: req.params.id, isPublished: true, isDeleted: false },
+    {
+      $inc: { viewCount: 1 },
+    },
+    { new: true }
+  )
+    .populate("categories", "name -_id")
+    .exec((err, data) => {
+      if (err) res.status(500).json(err);
+      return res.status(200).json(data);
+    });
+};
 
-    // Previous article
-    try {
-      articles.previousArticle = await Articles.findOne({
-        _id: { $lt: articles.currentArticle._id },
-        isPublished: true,
-        isDeleted: false,
-      }).sort({ createdAt: -1 });
-    } catch (err) {
-      return res.status(500).json(err);
-    }
+// @desc    Display one published article.
+// @route   GET /articles/published/sibling/:id
+articleController.get_sibling_published_article = async (req, res) => {
+  let articles = {};
 
-    // Next article
-    try {
-      articles.nextArticle = await Articles.findOne({
-        _id: { $gt: articles.currentArticle._id },
-        isPublished: true,
-        isDeleted: false,
-      }).sort({ createdAt: 1 });
-    } catch (err) {
-      return res.status(500).json(err);
-    }
-
-    return res.status(200).json(articles);
-  } else {
-    // Get all articles
-    Articles.find({ isPublished: true, isDeleted: false })
-      .populate("categories", "name -_id")
-      .sort({ createdAt: -1 })
-      .exec((err, data) => {
-        if (err) res.status(500).json(err);
-        return res.status(200).json(data);
-      });
+  // Previous article
+  try {
+    articles.previousArticle = await Articles.findOne({
+      _id: { $lt: req.params.id },
+      isPublished: true,
+      isDeleted: false,
+    }).sort({ createdAt: -1 });
+  } catch (err) {
+    return res.status(500).json(err);
   }
+
+  // Next article
+  try {
+    articles.nextArticle = await Articles.findOne({
+      _id: { $gt: req.params.id },
+      isPublished: true,
+      isDeleted: false,
+    }).sort({ createdAt: 1 });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+
+  return res.status(200).json(articles);
 };
 
 // @desc    Get top 3 articles
@@ -177,7 +180,7 @@ articleController.put_article = async (req, res) => {
 };
 
 // @desc    Delete article
-// @route   DELETE /article/:id
+// @route   DELETE /articles/:id
 articleController.delete_article = async (req, res) => {
   // Check existing Article
   const article = await Articles.findById(req.params.id);
@@ -189,18 +192,6 @@ articleController.delete_article = async (req, res) => {
   article.save((err) => {
     if (err) return res.status(500).json(err);
     return res.status(201).json({ msg: "Data successfully deleted!" });
-  });
-};
-
-articleController.post_image = async (req, res) => {
-  const oldPath = req.file.path;
-  const newPath = "/uploads/images/" + req.file.filename;
-
-  fs.rename(oldPath, newPath, (err) => {
-    if (err) throw err;
-    return res
-      .status(200)
-      .json({ path: newPath, msg: "File moved succesfully!" });
   });
 };
 
