@@ -31,7 +31,7 @@ function Home() {
   };
 
   const getArticles = async () => {
-    await fetch("http://localhost:8080/api/articles/published")
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/articles/published`)
       .then((response) => response.json())
       .then((data) => {
         setArticles(data);
@@ -46,7 +46,7 @@ function Home() {
   };
 
   const getTopArticles = async () => {
-    await fetch("http://localhost:8080/api/articles/top")
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/articles/top`)
       .then((response) => response.json())
       .then((data) => {
         setSideArticles(data);

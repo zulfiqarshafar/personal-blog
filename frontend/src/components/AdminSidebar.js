@@ -17,7 +17,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 function AdminSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const user = useSelector((state) => state.user.value)
+  const user = useSelector((state) => state.user.value);
 
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -26,7 +26,7 @@ function AdminSidebar() {
   };
 
   const handleLogout = async () => {
-    await fetch("http://localhost:8080/api/users/logout", {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/users/logout`, {
       method: "POST",
       credentials: "include",
     })

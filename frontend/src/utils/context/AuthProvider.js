@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function getAccessToken() {
-      await fetch("http://localhost:8080/api/users/refresh-token", {
+      await fetch(`${process.env.REACT_APP_API_HOST}/api/users/refresh-token`, {
         method: "POST",
         credentials: "include",
         headers: {

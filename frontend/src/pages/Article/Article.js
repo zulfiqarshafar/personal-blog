@@ -16,7 +16,9 @@ function Article() {
 
   useEffect(() => {
     async function getCurrentArticle() {
-      await fetch("http://localhost:8080/api/articles/published/" + articleId)
+      await fetch(
+        `${process.env.REACT_APP_API_HOST}/api/articles/published/${articleId}`
+      )
         .then((response) => response.json())
         .then((data) => {
           setArticle(data);
@@ -26,7 +28,7 @@ function Article() {
 
     async function getSibilngArticle() {
       await fetch(
-        "http://localhost:8080/api/articles/published/sibling/" + articleId
+        `${process.env.REACT_APP_API_HOST}/api/articles/published/sibling/${articleId}`
       )
         .then((response) => response.json())
         .then((data) => {

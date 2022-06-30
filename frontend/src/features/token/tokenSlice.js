@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Async action creator
 export const refreshToken = createAsyncThunk("token/refreshToken", async () => {
   const response = await fetch(
-    "http://localhost:8080/api/users/refresh-token",
+    `${process.env.REACT_APP_API_HOST}/api/users/refresh-token`,
     {
       method: "POST",
       credentials: "include",

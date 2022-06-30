@@ -37,7 +37,7 @@ function Articles() {
     console.log("delete");
     console.log(articleId);
 
-    await fetch("http://localhost:8080/api/articles/" + articleId, {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/articles/${articleId}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + accesstoken,
@@ -58,7 +58,7 @@ function Articles() {
 
   useEffect(() => {
     async function getArticles() {
-      await fetch("http://localhost:8080/api/articles", {
+      await fetch(`${process.env.REACT_APP_API_HOST}/api/articles`, {
         headers: {
           Authorization: "Bearer " + accesstoken,
         },
