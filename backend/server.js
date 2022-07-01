@@ -40,6 +40,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // listen
-if (process.env.NODE_ENV !== "production") {
-  app.listen(port, () => console.log(`Listening on localhost:${port}`));
-}
+app.listen(port, () => console.log(`Listening on port :${port}`));
