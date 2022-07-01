@@ -3,12 +3,16 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import { port } from "./config/config.js";
 import articleRouter from "./routes/ArticleRouter.js";
 import categoryRouter from "./routes/CategoryRouter.js";
 import imageRouter from "./routes/ImageRouter.js";
 import userRouter from "./routes/UserRouter.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // app config
 const app = express();
