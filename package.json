@@ -1,0 +1,17 @@
+{
+  "name": "personalblog",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "cd ./backend/ && npm install && node server.js",
+    "heroku-postbuild": "cd ./frontend/ && npm install && npm run build",
+    "backend": "cd ./backend/ && nodemon server.js ",
+    "frontend": "cd ./frontend/ && npm start",
+    "test": "cd ./frontend/ && npm run test"
+  },
+  "engines": {
+    "node": "16.14.x"
+  },
+  "author": "MZShafar",
+  "license": "ISC"
+}

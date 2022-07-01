@@ -64,7 +64,7 @@ function Create() {
   };
 
   const handleDelete = async () => {
-    await fetch("http://localhost:8080/api/articles/" + articleId, {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/articles/${articleId}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + accesstoken,
@@ -115,7 +115,7 @@ function Create() {
           reqBody.articleId = articleId;
         }
 
-        await fetch("http://localhost:8080/api/articles", {
+        await fetch(`${process.env.REACT_APP_API_HOST}/api/articles`, {
           method: reqMethod,
           headers: {
             Authorization: "Bearer " + accesstoken,
@@ -152,7 +152,7 @@ function Create() {
       const formData = new FormData();
       formData.append("image", blobInfo.blob(), blobInfo.filename());
 
-      fetch("http://localhost:8080/api/images", {
+      fetch(`${process.env.REACT_APP_API_HOST}/api/images`, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + accesstoken,
@@ -172,7 +172,7 @@ function Create() {
     });
 
   const getCategories = async () => {
-    await fetch("http://localhost:8080/api/categories")
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/categories`)
       .then((response) => response.json())
       .then((data) => {
         const categoriesOptions = data.map((category) => category.name);
@@ -188,11 +188,14 @@ function Create() {
   useEffect(() => {
     async function getArticle() {
       console.log(articleId);
-      await fetch("http://localhost:8080/api/articles/" + articleId, {
-        headers: {
-          Authorization: "Bearer " + accesstoken,
-        },
-      })
+      await fetch(
+        `${process.env.REACT_APP_API_HOST}/api/articles/${articleId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + accesstoken,
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           setArticle(data);
@@ -403,7 +406,7 @@ function Create() {
 
         <form className="create-article__content__editor">
           <Editor
-            apiKey="your-api-key"
+            apiKey={process.env.REACT_APP_TINYMCE_KEY}
             onInit={(evt, editor) => {
               editorRef.current = editor;
               editor.getContainer().classList.add("editor-container");
