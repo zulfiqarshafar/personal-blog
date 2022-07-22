@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/user/userSlice";
 import { Alert, Grow } from "@mui/material";
+import logo from "../../assets/logo.png";
 import "./Login.css";
 
 function Login() {
@@ -65,9 +66,11 @@ function Login() {
 
   return (
     <section className="login">
-      <h1 className="login__blog-link">
-        <a href="/">BLOG</a>
-      </h1>
+      <div className="login__blog-link">
+        <a href="/">
+          <img src={logo} alt="blog logo" height="150px" />
+        </a>
+      </div>
       {/* <p
         ref={errRef}
         className={errMessage ? "errmsg" : "offscreen"}

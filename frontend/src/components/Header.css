@@ -1,5 +1,5 @@
 .header {
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,9 +13,10 @@
 
 .header__center-part {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   height: 100%;
+  width: 33%;
 }
 
 .header__center-part a {
@@ -27,7 +28,7 @@
 }
 
 .header__center-part a:hover {
-  background-color: lightsalmon;
+  background-color: lightseagreen;
 }
 
 .header__center-part__option {
@@ -50,4 +51,9 @@
 .header__right-part {
   display: flex;
   justify-content: flex-end;
+  width: 20%;
+}
+
+.header__logo {
+  display: flex;
 }

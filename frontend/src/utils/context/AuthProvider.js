@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem("accesstoken", data.accessToken);
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
     }
 

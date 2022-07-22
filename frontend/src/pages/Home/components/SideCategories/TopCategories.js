@@ -1,5 +1,5 @@
 import React from "react";
-import SideCategory from "./SideCategory";
+import SideCategory from "./components/SideCategoriesItem/SideCategory";
 
 function TopCategories(props) {
   const topCategories = props.topCategories;

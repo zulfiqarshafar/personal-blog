@@ -1,6 +1,6 @@
 import React from "react";
 import "./SideAbout.css";
-import imageAbout from "../assets/leejooyoung.jpg";
+import imageAbout from "../../../../assets/lionking.jpg";
 
 function SideAbout() {
   return (

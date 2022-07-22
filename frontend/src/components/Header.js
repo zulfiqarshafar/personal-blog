@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Search from "./Search";
+import logo from "../assets/logo.png";
 import "./Header.css";
 
 function Header() {
@@ -24,7 +26,9 @@ function Header() {
     <div className="header">
       <div className="header__left-part">
         <Link to="/">
-          <div className="header__logo">BLOG</div>
+          <div className="header__logo">
+            <img src={logo} alt="blog logo" height="60px" />
+          </div>
         </Link>
       </div>
       <div className="header__center-part">
@@ -52,7 +56,9 @@ function Header() {
           ></span>
         </Link>
       </div>
-      <div className="header__right-part">Search</div>
+      <div className="header__right-part">
+        <Search />
+      </div>
     </div>
   );
 }

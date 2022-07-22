@@ -5,8 +5,8 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { formatDateTime } from "../../../utils/helper/Helper";
-import ModalDelete from "../../../components/ModalDelete";
+import { formatDateTime } from "../../utils/helper/Helper";
+import ModalDelete from "../../components/Modal/ModalDelete";
 import { Editor } from "@tinymce/tinymce-react";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";

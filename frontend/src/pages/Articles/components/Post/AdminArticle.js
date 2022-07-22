@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Chip } from "@mui/material";
-import SanitizedComponent from "./SanitizedComponent";
+import SanitizedComponent from "../../../../components/SanitizedComponent";
 import "./AdminArticle.css";
 
 function AdminArticle(props) {

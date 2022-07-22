@@ -1,6 +1,6 @@
 import React from "react";
-import { formatDate } from "../utils/helper/Helper";
-import SideArticle from "./SideArticle";
+import { formatDate } from "../../../../utils/helper/Helper";
+import SideArticle from "./components/SidePostsItem/SideArticle";
 import "./SideArticles.css";
 
 function SideArticles(props) {
