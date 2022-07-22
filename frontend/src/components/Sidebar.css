@@ -18,12 +18,12 @@
 }
 
 .admin-sidebar .MuiListItemButton-root.Mui-selected {
-  background-color: lightsalmon;
+  background-color: lightseagreen;
 }
 
 .admin-sidebar .MuiListItemButton-root:hover,
 .admin-sidebar .MuiListItemButton-root.Mui-selected:hover {
-  background-color: salmon;
+  background-color: #2e8a56;
 }
 
 /* .sidebar-header {
@@ -62,5 +62,5 @@
 
 /* .sidebar-menu a:hover,
 .sidebar-footer a:hover {
-  color: lightsalmon;
+  color: lightseagreen;
 } */

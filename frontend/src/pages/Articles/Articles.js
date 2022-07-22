@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AdminArticle from "../../components/AdminArticle";
-import ModalDelete from "../../components/ModalDelete";
+import AdminArticle from "./components/Post/AdminArticle";
+import ModalDelete from "../../components/Modal/ModalDelete";
 import AddIcon from "@mui/icons-material/Add";
 import { formatDateTime } from "../../utils/helper/Helper";
 import "./Articles.css";
@@ -16,21 +16,11 @@ function Articles() {
   const navigate = useNavigate();
 
   const generateShortContent = (content) => {
-    const container = document.createElement("div");
-    container.innerHTML = content;
+    content = content.replace(/<[^>]*>/g, " ");
+    content = content.replace(/\s+/g, " ");
+    content = content.trim();
 
-    const imgList = container.querySelectorAll("img");
-    if (imgList.length > 0) {
-      imgList.forEach((img) => {
-        img.parentNode.removeChild(img);
-      });
-    }
-
-    const newContent = container.innerHTML;
-
-    return newContent.length > 500
-      ? newContent.substring(0, 500) + "..."
-      : newContent;
+    return content.length > 500 ? content.substring(0, 500) + "..." : content;
   };
 
   const handleDelete = async () => {

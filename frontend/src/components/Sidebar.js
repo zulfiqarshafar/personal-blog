@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./AdminSidebar.css";
+import "./Sidebar.css";
 import {
   List,
   ListItemButton,
@@ -14,7 +14,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-function AdminSidebar() {
+function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const user = useSelector((state) => state.user.value);
@@ -136,4 +136,4 @@ function AdminSidebar() {
   );
 }
 
-export default AdminSidebar;
+export default Navbar;

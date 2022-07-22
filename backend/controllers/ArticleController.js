@@ -29,7 +29,17 @@ articleController.get_article = async (req, res) => {
 // @desc    Display list of all published articles.
 // @route   GET /articles/published
 articleController.get_published_articles = async (req, res) => {
+  const searchParam = req.query.search;
+  let querySearch = [{}];
+
+  if (searchParam != null && searchParam.trim() != "") {
+    querySearch = [{ title: { $regex: searchParam.trim(), $options: "i" } }];
+  } else if (searchParam != null) {
+    querySearch = [{ title: null }];
+  }
+
   Articles.find({ isPublished: true, isDeleted: false })
+    .and(querySearch)
     .populate("categories", "name -_id")
     .sort({ createdAt: -1 })
     .exec((err, data) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import AdminSidebar from "./AdminSidebar";
+import Sidebar from "../Sidebar";
 
 function PrivateLayout() {
   const location = useLocation();
@@ -8,7 +8,7 @@ function PrivateLayout() {
 
   return accessToken ? (
     <>
-      <AdminSidebar />
+      <Sidebar />
       <Outlet />
     </>
   ) : (
